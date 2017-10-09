@@ -14,7 +14,8 @@ class UserController extends Controller
      */
     public function actionLogin()
     {
-        $this->render("login");
+        $this->layout = false;
+        return $this->render("login");
     }
 
     /**
@@ -22,7 +23,8 @@ class UserController extends Controller
      */
     public function actionEdit()
     {
-        $this->render("edit");
+        $this->layout = false;
+        return $this->render("edit");
     }
 
     /**
@@ -30,6 +32,7 @@ class UserController extends Controller
      */
     public function actionResetPwd()
     {
-        $this->render("reset_pwd");
+        $this->layout = false;
+        return $this->render("reset_pwd");
     }
 }
