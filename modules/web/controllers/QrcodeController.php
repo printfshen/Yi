@@ -9,12 +9,16 @@ use yii\web\Controller;
  */
 class QrcodeController extends Controller
 {
+    public function __construct($id, $module, array $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->layout = "main";
+    }
     /**
      * @return string
      */
     public function actionIndex()
     {
-        $this->layout = false;
         return $this->render('index');
     }
 
@@ -23,7 +27,6 @@ class QrcodeController extends Controller
      */
     public function actionSet()
     {
-        $this->layout = false;
         return $this->render('set');
     }
 }

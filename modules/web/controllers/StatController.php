@@ -9,6 +9,11 @@ use yii\web\Controller;
  */
 class StatController extends Controller
 {
+    public function __construct($id, $module, array $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->layout = "main";
+    }
 
     /**
      * 财务统计
@@ -16,7 +21,6 @@ class StatController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = false;
         return $this->render('index');
     }
 
@@ -26,7 +30,6 @@ class StatController extends Controller
      */
     public function actionProduct()
     {
-        $this->layout = false;
         return $this->render('product');
     }
 
@@ -36,7 +39,6 @@ class StatController extends Controller
      */
     public function actionMember()
     {
-        $this->layout = false;
         return $this->render('member');
     }
 
@@ -46,7 +48,6 @@ class StatController extends Controller
      */
     public function actionShare()
     {
-        $this->layout = false;
         return $this->render('share');
     }
 }

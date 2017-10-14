@@ -2,16 +2,11 @@
 
 namespace app\controllers;
 
+use app\common\components\BaseWebController;
 use Yii;
-use yii\filters\AccessControl;
 use yii\log\FileTarget;
-use yii\web\Controller;
-use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
-class ErrorController extends Controller
+class ErrorController extends BaseWebController
 {
 
   public function actionError()
@@ -40,7 +35,7 @@ class ErrorController extends Controller
         $log->export();
         //todo 写入数据库
         }
-        $this->layout = false;
+//        $this->layout = false;
         return $this->render('error', [
             "err_msg" => $err_msg,
         ]);

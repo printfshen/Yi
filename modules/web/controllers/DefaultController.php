@@ -9,6 +9,11 @@ use yii\web\Controller;
  */
 class DefaultController extends Controller
 {
+    public function __construct($id, $module, array $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->layout = "main";
+    }
     /**
      * Renders the index view for the module
      * @return string

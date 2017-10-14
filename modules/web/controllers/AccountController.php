@@ -9,12 +9,17 @@ use yii\web\Controller;
  */
 class AccountController extends Controller
 {
+    public function __construct($id,  $module, array $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->layout = "main";
+    }
+
     /**
      * 账户列表
      */
     public function actionIndex()
     {
-        $this->layout = false;
         return $this->render("index");
     }
 
@@ -23,7 +28,6 @@ class AccountController extends Controller
      */
     public function actionSet()
     {
-        $this->layout = false;
         return $this->render("set");
     }
 
@@ -32,7 +36,6 @@ class AccountController extends Controller
      */
     public function actionInfo()
     {
-        $this->layout = false;
         return $this->render("info");
     }
 }

@@ -7,12 +7,16 @@ use yii\web\Controller;
 
 class BrandController extends Controller
 {
+    public function __construct($id, $module, array $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->layout = "main";
+    }
     /**
      * 品牌详情
      */
     public function actionInfo()
     {
-        $this->layout = false;
         return $this->render('info');
     }
 
@@ -21,7 +25,6 @@ class BrandController extends Controller
      */
     public function actionSet()
     {
-        $this->layout = false;
         return $this->render('set');
     }
 
@@ -30,7 +33,6 @@ class BrandController extends Controller
      */
     public function actionImages()
     {
-        $this->layout = false;
         return $this->render('images');
     }
 }
