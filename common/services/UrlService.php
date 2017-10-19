@@ -21,8 +21,9 @@ class UrlService
      */
     public static function buildWebUrl($path, $params = [])
     {
+        $domain_config = \Yii::$app->params['domain'];
         $path = Url::toRoute(array_merge([$path], $params));
-        return "/web" . $path;
+        return $domain_config['web'] . $path;
     }
 
     /**
@@ -32,8 +33,9 @@ class UrlService
      */
     public static function buildMUrl($path, $params = [])
     {
+        $domain_config = \Yii::$app->params['domain'];
         $path = Url::toRoute(array_merge([$path], $params));
-        return "/m" . $path;
+        return $domain_config['m'] . $path;
     }
 
     /**
@@ -44,8 +46,9 @@ class UrlService
      */
     public static function buildWwwUrl($path, $params = [])
     {
+        $domain_config = \Yii::$app->params['domain'];
         $path = Url::toRoute(array_merge([$path], $params));
-        return $path;
+        return $domain_config['www'] . $path;
     }
 
     /**
@@ -54,6 +57,7 @@ class UrlService
      */
     public static function buildNullUrl()
     {
+        $domain_config = \Yii::$app->params['domain'];
         return "javascript:void(0);";
     }
 

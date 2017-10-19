@@ -2,18 +2,17 @@
 
 namespace app\modules\web\controllers;
 
+use app\common\components\BaseWebController;
+use app\modules\web\controllers\common\BaseController;
 use yii\web\Controller;
 
 /**
  * Default controller for the `web` module
  */
-class DashboardController extends Controller
+class DashboardController extends BaseController
 {
-    public function __construct($id, $module, array $config = [])
-    {
-        parent::__construct($id, $module, $config);
-        $this->layout = "main";
-    }
+
+
     /**
      * 仪表盘界面
      * @return string

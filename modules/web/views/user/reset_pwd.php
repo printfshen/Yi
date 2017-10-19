@@ -1,4 +1,9 @@
+<?php
+use app\assets\WebAsset;
+use \app\common\services\StaticService;
 
+StaticService::includeAppJsStatic("/js/web/user/reset_pwd.js",WebAsset::className());
+?>
         <div class="row  border-bottom">
             <div class="col-lg-12">
                 <div class="tab_title">
@@ -19,14 +24,14 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">账号:</label>
                         <div class="col-lg-10">
-                            <label class="control-label">编程浪子郭大爷</label>
+                            <label class="control-label"><?=$user_info['nickname']?></label>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">手机:</label>
                         <div class="col-lg-10">
-                            <label class="control-label">11012345679</label>
+                            <label class="control-label"><?=$user_info['mobile']?></label>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>

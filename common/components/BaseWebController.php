@@ -93,4 +93,11 @@ class BaseWebController extends Controller
             "req_id" => uniqid(),
         ]);
     }
+
+    //统一JS提醒
+    public function renderJs($msg, $url)
+    {
+        return $this->renderPartial("@app/views/common/js",["msg" => $msg, "url" => $url]);
+    }
+
 }
