@@ -10,6 +10,7 @@ namespace app\common\services\applog;
 
 
 use app\common\services\UtiService;
+use app\models\AppAccessLog;
 use app\models\AppLog;
 
 class AppLogService
@@ -48,5 +49,29 @@ class AppLogService
             $model_app_log->created_time = date("Y-m-d H:i:s");
             $model_app_log->save(0);
         }
+    }
+
+    /**
+     * 记录用户访问信息
+     * @param int $uid
+     */
+    public static function addAppAccessLog($uid = 0)
+    {
+        $get_params = \Yii::$app->request->get();
+        $post_params = \Yii::$app->request->post();
+        $target_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+        $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+        $ua = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+
+        $access_log = new AppAccessLog();
+        $access_log->uid = $uid;
+        $access_log->referer_url = $referer;
+        $access_log->target_url = $target_url;
+        $access_log->query_params = json_encode(array_merge($get_params, $post_params));
+        $access_log->ua = $ua;
+        $access_log->ip = UtiService::getIP();
+        $access_log->created_time = date("Y-m-d H:i:s");
+
+        return $access_log->save(0);
     }
 }

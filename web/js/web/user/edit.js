@@ -17,19 +17,19 @@ var user_edit_ops = {
             var email = $(".user_edit_wrap input[name=email]").val();
             if(nickname.length < 1)
             {
-                alert("请输入合法的姓名~~~");
+                common_ops.alert("请输入合法的姓名~~~");
                 return false;
             }
             if(email.length < 1)
             {
-                alert("请输入合法的邮箱~~~");
+                common_ops.alert("请输入合法的邮箱~~~");
                 return false;
             }
 
             btn_target.addClass("disabled");
 
             $.ajax({
-                url:"/web/user/edit",
+                url:common_ops.buildWebUrl("/user/edit"),
                 data:{
                     nickname : nickname,
                     email : email,
@@ -38,7 +38,14 @@ var user_edit_ops = {
                 dataType:"json",
                 success:function (res) {
                     btn_target.removeClass("disabled");
-                    alert(res.msg);
+                    callback =null;
+                    if(res.code == 200)
+                    {
+                        callback = function () {
+                            window.location.href = window.location.href;
+                        }
+                    }
+                    common_ops.alert(res.msg, callback);
                 }
             })
         })

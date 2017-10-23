@@ -1,21 +1,6 @@
+<?=Yii::$app->view->renderFile("@app/modules/web/views/common/tab_book.php", ['current' => 'index'])?>
 
-        <div class="row  border-bottom">
-            <div class="col-lg-12">
-                <div class="tab_title">
-                    <ul class="nav nav-pills">
-                        <li  class="current"  >
-                            <a href="/web/book/index">图书列表</a>
-                        </li>
-                        <li  >
-                            <a href="/web/book/cat">分类列表</a>
-                        </li>
-                        <li  >
-                            <a href="/web/book/images">图片资源</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div><div class="row mg-t20 wrap_book_set">
+<div class="row mg-t20 wrap_book_set">
             <div class="col-lg-12">
                 <h2 class="text-center">图书设置</h2>
                 <div class="form-horizontal m-t">

@@ -10,6 +10,7 @@ namespace app\modules\web\controllers\common;
 
 
 use app\common\components\BaseWebController;
+use app\common\services\applog\AppLogService;
 use app\common\services\UrlService;
 use app\models\User;
 
@@ -54,6 +55,10 @@ class BaseController extends BaseWebController
                 $this->redirect(UrlService::buildWebUrl("/user/login"));
             }
         }
+        //记录用户所有的访问操作
+        AppLogService::addAppAccessLog($this->current_user['uid']);
+
+
         return true;
     }
 

@@ -8,7 +8,7 @@ var user_reset_pwd_ops = {
             var btn_target = $(this);
             if(btn_target.hasClass("disabled"))
             {
-                alert("正在处理，请不要重复点击");
+                common_ops.alert("正在处理，请不要重复点击");
                 return false;
             }
             var old_password = $("#old_password").val();
@@ -16,18 +16,18 @@ var user_reset_pwd_ops = {
 
             if (old_password.length < 1)
             {
-                alert("请输入原密码~~~");
+                common_ops.tip("请输入原密码~~~", $("#old_password"));
                 return false;
             }
             if (new_password.length < 6)
             {
-                alert("请输入不少于6位字符的新密码~~~");
+                common_ops.tip("请输入不少于6位字符的新密码~~~", $("#new_password"));
                 return false;
             }
 
             btn_target.addClass("disabled");
             $.ajax({
-                url:"/web/user/reset-pwd",
+                url:common_ops.buildWebUrl("/user/reset-pwd"),
                 data:{
                     old_password : old_password,
                     new_password : new_password,
@@ -36,11 +36,14 @@ var user_reset_pwd_ops = {
                 dataType:"json",
                 success:function (result) {
                     btn_target.removeClass("disabled");
-                    alert(result.msg);
+                    callback = null;
                     if (result.code == 200)
                     {
-                        window.location.href = window.location.href;
+                        callback = function () {
+                            window.location.href = window.location.href;
+                        }
                     }
+                    common_ops.alert(result.msg, callback);
                 }
             })
         })

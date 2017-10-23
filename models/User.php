@@ -31,6 +31,17 @@ class User extends \yii\db\ActiveRecord
         $this->login_pwd = $this->getSaltPassword($password);
     }
 
+    public function setSalt($length = 16)
+    {
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+        $salt = "";
+        for ($i =0;$i < $length;$i++)
+        {
+            $salt .= $chars[mt_rand(0, strlen($chars) - 1)];
+        }
+        $this->login_salt = $salt;
+    }
+
     /**
      * 生产加密密码
      * @param $password
@@ -38,7 +49,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function getSaltPassword($password)
     {
-        return md5($password.md5($this->login_salt));
+        return md5($password . md5($this->login_salt));
     }
 
     /**
@@ -47,7 +58,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function verifyPassword($password)
     {
-        $this->getSaltPassword($password) == $this->login_pwd;
+        return $this->login_pwd === $this->getSaltPassword($password);
     }
 
 

@@ -1,17 +1,6 @@
+<?=Yii::$app->view->renderFile("@app/modules/web/views/common/tab_qrcode.php", ['current' => 'index'])?>
 
-
-        <div class="row  border-bottom">
-            <div class="col-lg-12">
-                <div class="tab_title">
-                    <ul class="nav nav-pills">
-                        <li  class="current"  >
-                            <a href="/web/qrcode/index">渠道二维码</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row m-t  wrap_qrcode_set">
+<div class="row m-t  wrap_qrcode_set">
             <div class="col-lg-12">
                 <h2 class="text-center">渠道二维码设置</h2>
                 <div class="form-horizontal m-t m-b">

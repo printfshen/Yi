@@ -92,6 +92,7 @@ class BaseWebController extends Controller
             "data" => $data,
             "req_id" => uniqid(),
         ]);
+        return \Yii::$app->end();
     }
 
     //统一JS提醒

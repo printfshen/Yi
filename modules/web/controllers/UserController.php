@@ -45,7 +45,8 @@ class UserController extends BaseController
         }
         //验证密码 md5(login_pwd + md5(login_salt))
 //        $auth_pwd = md5($login_pwd . md5($user_info['login_salt']));
-        if($user_info->verifyPassword($login_pwd))
+
+        if(!$user_info->verifyPassword($login_pwd))
         {
             return $this->renderJs("请输入正确的用户名和密码~~~3", UrlService::buildWebUrl("/user/login"));
         }
@@ -78,11 +79,11 @@ class UserController extends BaseController
             $email = trim($this->post("email"));
             if (mb_strlen($nickname, "utf-8") < 1)
             {
-                return $this->renderJson([], "请输入合法的姓名");
+                return $this->renderJson([], "请输入合法的姓名",-1);
             }
             if (mb_strlen($email, "utf-8") < 1)
             {
-                return $this->renderJson([], "请输入合法的邮箱");
+                return $this->renderJson([], "请输入合法的邮箱",-1);
             }
 
             $user_info =  $this->current_user;
@@ -113,29 +114,30 @@ class UserController extends BaseController
 
         if (mb_strlen($old_password,"utf-8") < 1)
         {
-            return $this->renderJson([],"请输入原密码");
+            return $this->renderJson([],"请输入原密码",-1);
         }
 
         if (mb_strlen($new_password,"utf-8") < 6)
         {
-            return $this->renderJson([],"请输入不少于6位字符的新密码~~~");
+            return $this->renderJson([],"请输入不少于6位字符的新密码~~~",-1);
         }
 
         if($old_password == $new_password)
         {
-            $this->renderJson([], "请重新输入一个吧，新密码和老密码相同~~~");
+            $this->renderJson([], "请重新输入一个吧，新密码和老密码相同~~~",-1);
         }
         //判断原密码是否正确
-        $user_info = $this->current_user;
-        if ($user_info->verifyPassword($old_password)){
-            return $this->renderJson([],"请检查原密码是否正确~~~", -1);
+        $current_user = $this->current_user;
+        if (!$current_user->verifyPassword($old_password)) {
+            return $this->renderJSON([],"请检查原密码是否正确~~",-1);
         }
-        $user_info->setPassword($new_password);
-        $user_info->updated_time = date("Y-m-d H:i:s",time());
-        $user_info->update(0);
 
+        $current_user->setPassword($new_password);
+        $current_user->updated_time = date("Y-m-d H:i:s");
+        $current_user->update(0);
+//        print_r($current_user);exit;
         //修改密码后  把资料写入缓存中
-        $this->setLoginStatus($user_info);
+        $this->setLoginStatus($current_user);
 
         return $this->renderJson([], "重置密码成功~~~");
     }
