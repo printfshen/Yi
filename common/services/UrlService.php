@@ -61,4 +61,16 @@ class UrlService
         return "javascript:void(0);";
     }
 
+    /**
+     * 图片地址
+     * @param $bucket
+     * @param $image_key
+     */
+    public static function buildPicUrl($bucket, $image_key)
+    {
+        $domain_config = \Yii::$app->params['domain'];
+        $upload_config = \Yii::$app->params['upload'];
+        return $domain_config['www'] . $upload_config[$bucket] . "/" . $image_key;
+    }
+
 }

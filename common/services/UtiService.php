@@ -8,6 +8,8 @@
 
 namespace app\common\services;
 
+use yii\helpers\Html;
+
 //只封装通用方法
 class UtiService
 {
@@ -24,5 +26,23 @@ class UtiService
         }
         return $_SERVER['REMOTE_ADDR'];
 
+    }
+
+    /**
+     * 防止 htmlspecialchars  攻击
+     * @param $display
+     * @return string
+     */
+    public static function encode($display)
+    {
+        return Html::encode($display);
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getRootPath()
+    {
+        return dirname(\Yii::$app->vendorPath);
     }
 }
