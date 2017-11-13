@@ -2,16 +2,13 @@
 
 namespace app\modules\m\controllers;
 
+use app\modules\m\controllers\common\BaseController;
 use yii\web\Controller;
 
 
-class PayController extends Controller
+class PayController extends BaseController
 {
-    public function __construct($id, $module, array $config = [])
-    {
-        parent::__construct($id, $module, $config);
-        $this->layout = "main";
-    }
+
     /**
      * 品牌首页
      * @return string

@@ -2,16 +2,12 @@
 
 namespace app\modules\m\controllers;
 
+use app\modules\m\controllers\common\BaseController;
 use yii\web\Controller;
 
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
-    public function __construct($id, $module, array $config = [])
-    {
-        parent::__construct($id, $module, $config);
-        $this->layout = "main";
-    }
     /**
      * 商品列表
      * @return string
