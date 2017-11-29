@@ -1,3 +1,9 @@
+<?php
+use app\common\services\StaticService;
+use app\assets\WebAsset;
+use app\common\services\UrlService;
+StaticService::includeAppJsStatic("/js/web/member/index.js", WebAsset::className());
+?>
 <?=Yii::$app->view->renderFile("@app/modules/web/views/common/tab_member.php", ['current' => 'index'])?>
 
         <div class="row">
@@ -13,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" name="mix_kw" placeholder="请输入关键字" class="form-control" value="">
+                                <input type="text" name="mix_kw" placeholder="请输入关键字" class="form-control" value="<?=$search_conditions['mix_kw']?>">
                                 <span class="input-group-btn">
                             <button type="button" class="btn  btn-primary search">
                                 <i class="fa fa-search"></i>搜索
@@ -44,35 +50,57 @@
                     </tr>
                     </thead>
                     <tbody>
+
+                    <?php foreach ($list as $_item):?>
                     <tr>
-                        <td><img alt="image" class="img-circle" src="/uploads/avatar/20170313/159419a875565b1afddd541fa34c9e65.jpg" style="width: 40px;height: 40px;"></td>
-                        <td>郭威</td>
-                        <td>12312312312</td>
-                        <td>未填写</td>
-                        <td>正常</td>
+                        <td><img alt="image" class="img-circle" src="<?=$_item['avatar']?>" style="width: 40px;height: 40px;"></td>
+                        <td><?=$_item['nickname']?></td>
+                        <td><?=$_item['mobile']?></td>
+                        <td><?=$_item['sex_desc']?></td>
+                        <td><?=$_item['status_desc']?></td>
                         <td>
-                            <a  href="/web/member/info?id=1">
+                            <a  href="/web/member/info?id=<?=$_item['id']?>">
                                 <i class="fa fa-eye fa-lg"></i>
                             </a>
-                            <a class="m-l" href="/web/member/set?id=1">
+                            <a class="m-l" href="/web/member/set?id=<?=$_item['id']?>">
                                 <i class="fa fa-edit fa-lg"></i>
                             </a>
 
-                            <a class="m-l remove" href="javascript:void(0);" data="1">
-                                <i class="fa fa-trash fa-lg"></i>
-                            </a>
+                            <?php if($_item['status'] == 1):?>
+                                <a class="m-l remove" href="javascript:void(0);" data="<?=$_item['id']?>">
+                                    <i class="fa fa-trash fa-lg"></i>
+                                </a>
+                            <?php else:?>
+                                <a class="m-l recover" href="javascript:void(0);" data="<?=$_item['id']?>">
+                                    <i class="fa fa-rotate-left fa-lg"></i>
+                                </a>
+                            <?php endif;?>
                         </td>
                     </tr>
+                    <?php endforeach;?>
+
+
                     </tbody>
                 </table>
                 <div class="row">
                     <div class="col-lg-12">
-                        <span class="pagination_count" style="line-height: 40px;">共1条记录 | 每页50条</span>
+                        <span class="pagination_count" style="line-height: 40px;">共<?=$pages['total_count']?>条记录 | 每页<?=$pages['page_size']?>条</span>
                         <ul class="pagination pagination-lg pull-right" style="margin: 0 0 ;">
-                            <li class="active"><a href="javascript:void(0);">1</a></li>
+                            <?php for ($_page = 1;$_page <= $pages['total_page']; $_page++):?>
+                                <?php if($_page == $pages['p']):?>
+                                    <li class="active">
+                                        <a href="<?=UrlService::buildNullUrl();?>"><?=$_page;?></a>
+                                    </li>
+                                <?php else:?>
+                                    <li class="">
+                                        <a href="<?=UrlService::buildWebUrl("/account/index", ['p' => $_page])?>"><?=$_page;?></a>
+                                    </li>
+                                <?php endif;?>
+                            <?php endfor;?>
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
 

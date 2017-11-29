@@ -96,6 +96,7 @@ StaticService::includeAppJsStatic("/js/web/account/index.js", WebAsset::classNam
                             <?php endfor;?>
                         </ul>
                     </div>
-                </div>	</div>
+                </div>
+            </div>
         </div>
 

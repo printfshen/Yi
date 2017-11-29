@@ -16,6 +16,11 @@ class ConstantMapService
         1 => "正常",
         0 => "已删除",
     ];
+    public static $sex_mapping = [
+        0 => "未知",
+        1 => "男",
+        2 => "女",
+    ];
     public static $default_avatar = "default_avatar";
 
     public static $default_password = "******";

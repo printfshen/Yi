@@ -1,3 +1,8 @@
+<?php
+use app\common\services\ConstantMapService;
+use app\common\services\UrlService;
+use app\common\services\UtiService;
+?>
 <?=Yii::$app->view->renderFile("@app/modules/web/views/common/tab_member.php", ['current' => 'index'])?>
 
 <div class="row m-t">
@@ -12,13 +17,13 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-2 text-center">
-                        <img class="img-circle" src="/uploads/avatar/20170313/159419a875565b1afddd541fa34c9e65.jpg" width="100px" height="100px"/>
+                        <img class="img-circle" src="<?=UrlService::buildPicUrl('avatar', $info['avatar'])?>" width="100px" height="100px"/>
                     </div>
                     <div class="col-lg-9">
                         <dl class="dl-horizontal">
-                            <dt>姓名：</dt> <dd>郭威</dd>
-                            <dt>手机：</dt> <dd>12312312312</dd>
-                            <dt>性别：</dt> <dd>未填写</dd>
+                            <dt>姓名：</dt> <dd><?=UtiService::encode($info['nickname'])?></dd>
+                            <dt>手机：</dt> <dd><?=UtiService::encode($info['mobile'])?></dd>
+                            <dt>性别：</dt> <dd><?=ConstantMapService::$sex_mapping[$info['sex']]?></dd>
                         </dl>
                     </div>
                 </div>
