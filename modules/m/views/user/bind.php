@@ -1,4 +1,8 @@
-
+<?php
+use app\common\services\StaticService;
+use app\assets\MAsset;
+StaticService::includeAppJsStatic("/js/m/user/bind.js", MAsset::className());
+?>
 <div style="min-height: 500px;">
     <div class="page_title clearfix">
         <span>账号绑定</span>

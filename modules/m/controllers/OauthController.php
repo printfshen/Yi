@@ -68,9 +68,9 @@ class OauthController extends BaseController
                 . "access_token=" . $ret['access_token']
                 . "&openid=" . $ret['openid']
                 . "&lang=zh_CN";
-            $info = HttpClient::get($url);
-            $info = json_encode($info, true);
-            var_dump($info);
+            $wechar_user_info = HttpClient::get($url);
+            $wechar_user_info = json_encode($wechar_user_info, true);
+            var_dump($wechar_user_info);
         }
 
     }
