@@ -5,7 +5,59 @@ var user_bind_ops = {
     },
     eventBind:function () {
         var that = this;
+        $(".login_form_wrap .dologin").click(function () {
+            var btn_target = $(this);
+            if (btn_target.hasClass("disabled"))
+            {
+                alert("正在处理，请不要重复提交~~");
+                return;
+            }
+            var mobile = $(".login_form_wrap input[name=mobile]").val();
+            var img_captcha = $(".login_form_wrap input[name=img_captcha]").val();
+            var captcha_code = $(".login_form_wrap input[name=captcha_code]").val();
 
+            if (mobile.length != 11 || !/^[1-9]\d{10}$/.test( mobile ))
+            {
+                alert("请输入符合要求的手机号码~~");
+                return false;
+            }
+
+            if (img_captcha.length != 4)
+            {
+                alert("请输入符合要求的验证码~~");
+                return false;
+            }
+
+            if (captcha_code.length != 6)
+            {
+                alert("请输入正确的短信验证码~~");
+            }
+
+            btn_target.addClass("disabled");
+
+            var data = {
+                mobile:mobile,
+                img_captcha:img_captcha,
+                captcha_code:captcha_code,
+                referer:$(".hide_wrap input[name=referer]").val()
+            };
+            $.ajax({
+                url:common_ops.buildMUrl("/user/bind"),
+                type:'POST',
+                data:data,
+                dataType:'json',
+                success:function( res ){
+                    btn_target.removeClass("disabled");
+                    alert(res.msg);
+                    if( res.code != 200 ){
+                        $("#img_captcha").click();
+                        return;
+                    }
+                    window.location.href = res.data.url ;
+                }
+            })
+
+        });
 
         $(".login_form_wrap .get_captcha").click(function () {
             var btn_target = $(this);
@@ -38,14 +90,12 @@ var user_bind_ops = {
                 type:"post",
                 dataType:"json",
                 success:function (res) {
+                    btn_target.removeClass("disabled");
                     //由于是验证，没有短信通道，直接告知验证码多少了
                     alert( res.msg );
-                    if(res.code == 200){
-                        that.lightenOrDisabled("countdown");
-                    }else{
-
+                    if( res.code != 200 ){
                         $("#img_captcha").click();
-                        that.lightenOrDisabled("light");
+                        return;
                     }
                 }
             })

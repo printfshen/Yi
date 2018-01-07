@@ -11,6 +11,9 @@ namespace app\common\services;
 
 class ConstantMapService
 {
+    //微信绑定
+    public static $client_type_wechat = 1;
+
     public static $status_default = -1;
     public static $status_mapping =[
         1 => "正常",

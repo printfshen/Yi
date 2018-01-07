@@ -1,4 +1,6 @@
-
+<?php
+use app\common\services\UrlService;
+?>
 <div class="loginColumns animated fadeInDown">
 	<div class="row">
 
@@ -13,7 +15,7 @@
 		</div>
 		<div class="col-md-6">
 			<div class="ibox-content">
-				<form class="m-t" role="form" action="http://book.cn/web/user/login" method="post">
+				<form class="m-t" role="form" action="<?=UrlService::buildWebUrl('/user/login')?>" method="post">
                     <div class="form-group text-center">
                         <h2 class="font-bold">登录</h2>
                     </div>

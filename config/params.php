@@ -2,9 +2,9 @@
 
 return [
     "domain" =>[
-        "www" => "http://book.cn",
-        "m"   => "http://book.cn/m",
-        "web" => "http://book.cn/web",
+        "www" => "http://p6zzfm.natappfree.cc",
+        "m"   => "http://p6zzfm.natappfree.cc/m",
+        "web" => "http://p6zzfm.natappfree.cc/web",
     ],
     'upload' =>[
         'avatar' => "/uploads/avatar",

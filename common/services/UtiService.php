@@ -39,10 +39,26 @@ class UtiService
     }
 
     /**
+     * 获取根目录
      * @return mixed
      */
     public static function getRootPath()
     {
         return dirname(\Yii::$app->vendorPath);
     }
+
+    /**
+     * 判断是否是微信浏览器
+     * @return bool
+     */
+    public static function isWechat()
+    {
+        $ug = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : "";
+        if (stripos($ug, 'micromessenger') !== false)
+        {
+            return true;
+        }
+        return false;
+    }
+
 }
