@@ -13,28 +13,28 @@ StaticService::includeAppJsStatic("/js/web/account/set.js", WebAsset::className(
 			<div class="form-group">
 				<label class="col-lg-2 control-label">姓名:</label>
 				<div class="col-lg-10">
-					<input type="text" name="nickname" class="form-control" placeholder="请输入姓名~~" value="<?=$info?$info['nickname']:$info;?>">
+					<input type="text" name="nickname" class="form-control" placeholder="请输入姓名~~" value="<?=$info?$info['nickname']:'';?>">
 				</div>
 			</div>
 			<div class="hr-line-dashed"></div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">手机:</label>
 				<div class="col-lg-10">
-					<input type="text" name="mobile" class="form-control" placeholder="请输入手机~~" value="<?=$info?$info['mobile']:$info;?>">
+					<input type="text" name="mobile" class="form-control" placeholder="请输入手机~~" value="<?=$info?$info['mobile']:'';?>">
 				</div>
 			</div>
 			<div class="hr-line-dashed"></div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">邮箱:</label>
 				<div class="col-lg-10">
-					<input type="text" name="email" class="form-control" placeholder="请输入邮箱~~" value="<?=$info?$info['email']:$info;?>">
+					<input type="text" name="email" class="form-control" placeholder="请输入邮箱~~" value="<?=$info?$info['email']:'';?>">
 				</div>
 			</div>
 			<div class="hr-line-dashed"></div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">登录名:</label>
 				<div class="col-lg-10">
-					<input type="text" name="login_name" class="form-control" autocomplete="off" placeholder="请输入登录名~~" value="<?=$info?$info['login_name']:$info;?>">
+					<input type="text" name="login_name" class="form-control" autocomplete="off" placeholder="请输入登录名~~" value="<?=$info?$info['login_name']:'';?>">
 				</div>
 			</div>
 			<div class="hr-line-dashed"></div>
@@ -47,7 +47,7 @@ StaticService::includeAppJsStatic("/js/web/account/set.js", WebAsset::className(
 			<div class="hr-line-dashed"></div>
 			<div class="form-group">
 				<div class="col-lg-4 col-lg-offset-2">
-                    <input type="hidden" name="id" value="<?=$info?$info['uid']:$info;?>">
+                    <input type="hidden" name="id" value="<?=$info?$info['uid']:'';?>">
 					<button class="btn btn-w-m btn-outline btn-primary save">保存</button>
 				</div>
 			</div>

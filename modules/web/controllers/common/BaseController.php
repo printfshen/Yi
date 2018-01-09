@@ -19,7 +19,10 @@ use app\models\User;
 
 class BaseController extends BaseWebController
 {
+    //Cookie 名称
     protected $auth_cookie_name = "mooc_book";
+    //分页个数
+    protected $page_size = 50;
     //当前登陆用户信息
     public $current_user = null;
     //允许的控制器方法路径

@@ -8,6 +8,7 @@
 
 namespace app\common\services;
 
+//use Yii;
 //只用于价值应用本身的资源文件
 class StaticService
 {
@@ -28,8 +29,8 @@ class StaticService
         if($type == "js"){
             \Yii::$app->getView()->registerJsFile($path , ["depends" => $depend]);
 
-        } elseif($type == "css" ) {
-            \Yii::$app->getView()->registerJsFile($path , ["depends" => $depend]);
+        } elseif ($type == "css" ) {
+            \Yii::$app->getView()->registerCssFile($path , ["depends" => $depend]);
         }
 
     }

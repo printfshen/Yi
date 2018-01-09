@@ -2,9 +2,9 @@
 
 return [
     "domain" =>[
-        "www" => "http://p6zzfm.natappfree.cc",
-        "m"   => "http://p6zzfm.natappfree.cc/m",
-        "web" => "http://p6zzfm.natappfree.cc/web",
+        "www" => "http://5qwjhx.natappfree.cc",
+        "m"   => "http://5qwjhx.natappfree.cc/m",
+        "web" => "http://5qwjhx.natappfree.cc/web",
     ],
     'upload' =>[
         'avatar' => "/uploads/avatar",
